@@ -1,0 +1,9 @@
+body {
+  background-color: black;
+  z-index: -1;
+}
+
+a{
+  text-decoration: none;
+}
+
