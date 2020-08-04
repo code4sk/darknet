@@ -12,7 +12,7 @@ const auth = async function (req, res, next) {
         next();
     } catch (e) {
         console.log(e)
-        return res.status(200).send('invalid token')
+        return res.status(200).send('invalid token');
     }
 }
 

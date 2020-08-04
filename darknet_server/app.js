@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const userRouter = require('./router/userRouter'); 
+const movieRouter = require('./router/movieRouter'); 
 require('./mongoose/mongoose');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(userRouter);
+app.use(movieRouter);
 
 app.listen(8000, () => {
     console.log('Server started!');

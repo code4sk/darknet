@@ -1,28 +1,28 @@
 import React from 'react';
 import $ from 'jquery'
-import Navbar from './Navbar'
-import Thumbnail from './Thumbnail'
 
 
-class Home extends React.Component{
+
+class Watch extends React.Component {
 
     constructor(props) {
         super(props);
         this.handleLoad = this.handleLoad.bind(this);
     }
 
-    state = {
-        moviesList: []
-    }
-
     homeStyle = {
         margin: '40px'
     }
-    render(){
-        return(
+
+    render() {
+        let url = window.location.href;
+        console.log(url);
+        let vid = url.split('/').slice(-1)[0];
+        console.log(vid);
+        let mediaURL = `http://localhost:8000/movie/watch/${vid}/`
+        return (
             <div style={this.homeStyle}>
-                <Navbar />
-                <Thumbnail moviesList={this.state.moviesList} />
+                <video width="100%" controls src={mediaURL}></video>
             </div>
         );
     }
@@ -30,13 +30,11 @@ class Home extends React.Component{
     handleLoad() {
         console.log('on load listener in home')
         $.ajax({
-            type: "GET", 
+            type: "GET",
             url: "http://localhost:8000/movie/get-all/",
             success: (res) => {
                 console.log(res);
-                this.setState({
-                    moviesList: res
-                })
+                
             },
             error: (e) => {
                 console.log(e.statusText, "error");
@@ -46,15 +44,15 @@ class Home extends React.Component{
 
     componentDidMount() {
         // window.addEventListener('load', this.handleLoad);
-        this.handleLoad();
+        // this.handleLoad();
     }
     componentWillUnmount() {
         window.removeEventListener('load', this.handleLoad)
     }
 
-    
 
-    
+
+
 }
 
-export default Home;
+export default Watch;

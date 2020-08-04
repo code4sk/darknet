@@ -3,6 +3,7 @@ import Main from './components/Main'
 import SignUpForm from './components/SignUpForm'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Home from './components/Home'
+import Watch from './components/Watch'
 import { connect } from 'react-redux'
 import $ from 'jquery'
 
@@ -48,7 +49,8 @@ class App extends React.Component{
         <Router >
           <Switch>
             <Route path={"/"} exact component={Main} />
-            <Route path={"/home"} component={Home} />
+            <Route path={"/home"} exact component={Home} />
+            <Route path={"/watch/:v"} exact component={Watch} />
             <Route path={"/user/login"} exact component={LoginForm} />
             <Route path={"/user/sign-up"} exact component={SignUpForm} />
 

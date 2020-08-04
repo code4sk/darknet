@@ -15,17 +15,24 @@ const genreSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-})
+});
+
+const seriesIDSchema = new mongoose.Schema({
+    id: {
+        type: 'String',
+        required: true,
+        unique: true
+    }
+});
 
 
-const seriesSchema = new mongoose.Schema({
+const seriesSchema = new mongoose.Schema({ 
+    seriesID: [
+        { type: mongoose.Schema.Types.ObjectId, ref: 'SeriesID' }
+    ],
     name: {
         type: 'String',
         required: true,
-    },
-    folder: {
-        type: 'String',
-        required: true
     },
     description:{
         type: 'String',
@@ -82,11 +89,13 @@ const Series = mongoose.model('Series', seriesSchema);
 const Episode = mongoose.model('Episode', episodeSchema);
 const Genre = mongoose.model('Genre', genreSchema);
 const Person = mongoose.model('Person', personSchema);
+const SeriesID = mongoose.model('SeriesID', seriesIDSchema)
 
 module.exports = {
     Series,
     Episode,
     Genre,
-    Person
+    Person,
+    SeriesID,
 }
 
