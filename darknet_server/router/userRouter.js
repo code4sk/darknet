@@ -36,14 +36,14 @@ router.post('/user/login', cors(), async (req, res) => {
         check = false;
         user = null
         for (let i = 0; i < users.length; i++){
-    if (await bcrypt.compare(password, users[i].password)) {
-            user = users[i];
-            check = true;
-            break;
-        }
+            if (await bcrypt.compare(password, users[i].password)) {
+                user = users[i];
+                check = true;
+                break;
+            }
         }
         if (!check) {
-            return res.status(200).send('authentication failed');
+            return res.status(400).send('authentication failed');
         }
         const token = await jwt.sign(user.toObject(), 'darknet');
         console.log('done');

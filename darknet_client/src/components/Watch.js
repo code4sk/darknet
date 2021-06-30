@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery'
+import Navbar from './Navbar'
 
 
 
@@ -21,7 +22,9 @@ class Watch extends React.Component {
         console.log(vid);
         let mediaURL = `http://localhost:8000/movie/watch/${vid}/`
         return (
+            
             <div style={this.homeStyle}>
+                {/* <Navbar /> */}
                 <video width="100%" controls src={mediaURL}></video>
             </div>
         );

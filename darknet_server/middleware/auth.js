@@ -11,7 +11,7 @@ const auth = async function (req, res, next) {
         req.email = data.email;
         next();
     } catch (e) {
-        console.log(e)
+        console.log(e);
         return res.status(200).send('invalid token');
     }
 }
